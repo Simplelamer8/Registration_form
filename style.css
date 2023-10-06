@@ -8,7 +8,7 @@
 }
 body
 {
-    background-image: url(https://images.alphacoders.com/546/546091.jpg);
+    background-image: url(Background.jpg);
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -121,6 +121,10 @@ body
 {
     background-color: rgb(35, 36, 42);
 }
+.hide
+{
+    display: none;
+}
 .menu-open
 {
     display: block;
@@ -130,6 +134,24 @@ form
 {
     border-radius: 1rem;
     box-shadow: 1rem 1rem 1rem rgb(5, 10, 4);
+}
+.popup
+{
+    transition: 0.3s;
+    z-index: 2;
+    position: absolute;
+    padding: 0.5rem;
+    padding-right: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+    border: solid rgb(142, 232, 166);
+}
+.popup img 
+{
+    position: absolute;
+    right: 0.5rem;
+    bottom: 1.5rem;
+    width: 1rem;
 }
 @media screen and (max-width: 425px)
 {
