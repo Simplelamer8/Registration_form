@@ -7,6 +7,8 @@ const menu = dropdown.querySelector(".menu");
 const options = dropdown.querySelectorAll(".menu li");
 const selected = dropdown.querySelector(".selected");
 
+const thanks = document.querySelector(".popup");
+
 function switch1()
 {
     select.classList.toggle("select-clicked");
@@ -41,6 +43,7 @@ document.onclick = function(e)
 
 submit.addEventListener("click", (e) => {
     e.preventDefault();
+    let b = false;
     const inputs = document.querySelectorAll('input');
     inputs.forEach((input) => {
         input.style.border = "";
@@ -55,22 +58,30 @@ submit.addEventListener("click", (e) => {
         }
         else if (inputs[0].value != "")
         {
+            b = true;
             inputs[0].style.border = "solid red";
             alert("Name field must be empty for a company!");
         }
         else if (inputs[1].value != "")
         {
+            b = true;
             inputs[1].style.border = "solid red";
             alert("Surname field must be empty for a company!");
         }
     }
-    else
+    if (inputs[0].value == "" && inputs[1].value == "" && inputs[2].value == "" && inputs[3].value == "")
     {
-        if (inputs[2].value != "")
-        {
-            inputs[2].style.border = "solid red";
-            alert("Company name field must be empty!");
-        }
+        inputs.forEach((input) => {
+            input.style.border = "solid red";
+        })
+        b = true;
+        alert("Fill out the input field to submit the form!");
+    }
+    if (selected.innerHTML == "Select role...")
+    {
+        b = true;
+        alert("You must select role before submitting the form.");
+        select.style.border = "solid red";
     }
     
     let str = inputs[3].value;
@@ -78,12 +89,19 @@ submit.addEventListener("click", (e) => {
     {
         if (str[i] < '0' || str[i] > '9')
         {
-            if (str[i] != ' ')
+            if (str[i] != ' ' && str[i] != '+')
             {
+                b = true;
                 alert("Cell Phone number field should only contain digits with spaces!");
                 inputs[3].style.border = "solid red";
                 break;
             }
         }
+    }
+    if (b == false)
+    {
+        thanks.classList.remove('hide');
+        document.querySelector(".registrate").classList.add("hide");
+        setTimeout(() => {document.querySelector(".registrate").submit()}, 2000)
     }
 });
